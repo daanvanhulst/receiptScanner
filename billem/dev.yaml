@@ -1,0 +1,62 @@
+version: '3'
+services:
+  # fekor-client:
+  #   build: ./client/source
+  #   expose:
+  #     - "3000"
+    # volumes:
+    #   - ./client/source:/usr/src/app"
+  # proxy:
+  #   build: ./proxy
+  #   links:
+  #     - bbm-auth-gateway
+  #   ports:
+  #     - 9080:9080
+  #     - 9443:9443
+  auth-db:
+    #build: ./auth-db
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./auth-db:/seed-data
+
+  auth-gateway:
+    build: ./auth-gateway/source
+    ports:
+      - "3080:3100"
+    # volumes:
+    #   - ./auth-gateway/source/:/usr/src/app
+    links:
+      # - customer
+      # - modules
+      - auth-db
+
+  customer:
+    build: ./customer/source
+    ports:
+      - "3200:3200"
+    links:
+      - customer-db
+    # volumes:
+    #   - ./customer/source/:/usr/src/app
+
+  customer-db:
+    #build: ./customer-db
+    image: mongo
+    ports:
+      - "27018:27017"
+    volumes:
+      - ./customer-db:/seed-data
+
+  modules:
+    build: ./modules/source
+    ports:
+      - "3300:3300"
+    # volumes:
+    #   - ./modules/source/:/usr/src/app
+
+# networks:
+#   default:
+#     external:
+#       name: nat

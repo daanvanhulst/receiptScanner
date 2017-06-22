@@ -1,0 +1,18 @@
+extends: airbnb/base
+plugins:
+- airbnb/base
+parserOptions:
+ecmaversion: 6
+env:
+node: true
+es6: true
+mocha: true
+rules:
+semi:
+  - error
+  - always
+quotes:
+  - error
+  - single
+curly: error
+space-before-function-paren: off

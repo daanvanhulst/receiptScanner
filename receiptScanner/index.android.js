@@ -1,117 +1,67 @@
-'use strict';
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  Dimensions,
-  StyleSheet,
-  Text,
-  TouchableHighlight,
-  View
-} from 'react-native';
-import Camera from 'react-native-camera';
+import { AppRegistry, Navigator, BackAndroid } from 'react-native';
 
-class BadInstagramCloneApp extends Component {
+import CameraView from './app/camera';
+import Dashboard from './app/dashboard';
+
+let _navigator; // we fill this up upon on first navigation.
+
+BackAndroid.addEventListener('hardwareBackPress', () => {
+  if (_navigator.getCurrentRoutes().length === 1  ) {
+     return false;
+  }
+  _navigator.pop();
+  return true;
+});
+
+
+class ReceiptScanner extends Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Camera
-          ref={(cam) => {
-            this.camera = cam;
-          }}
-          style={styles.preview}
-          aspect={Camera.constants.Aspect.fill}>
-          <Text style={styles.capture} onPress={this.takePicture.bind(this)}>[CAPTURE]</Text>
-        </Camera>
-      </View>
+      <Navigator
+        initialRoute={{id: 'dashboard'}}
+        renderScene={this.navigatorRenderScene}/>
     );
   }
 
-  takePicture() {
-    this.camera.capture()
-      .then((data) => console.log(data))
-      .catch(err => console.error(err));
+  navigatorRenderScene(route, navigator) {
+    _navigator = navigator;
+
+    switch (route.id) {
+      case 'dashboard':
+        return (<Dashboard navigator={navigator} title="dashboard"/>);
+      case 'camera':
+        return (<CameraView navigator={navigator} title="camera" />);
+    }
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  preview: {
-    flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    height: Dimensions.get('window').height,
-    width: Dimensions.get('window').width
-  },
-  capture: {
-    flex: 0,
-    backgroundColor: '#fff',
-    borderRadius: 5,
-    color: '#000',
-    padding: 10,
-    margin: 40
-  }
-});
+// class ReceiptScanner extends Component {
+//   render() {
+//     const routes = [
+//       {title: 'Dashboard', index: 0} //        initialRouteStack={routes}
+//       // {title: 'Camera', index: 1},
+//     ];
+//     return (
+//       <Navigator
+//         initialRoute={routes[0]}
+//         renderScene={(route, navigator) =>
+//           <Dashboard 
+//             onForward={() => {
+//               navigator.push({
+//                 component: CameraView
+//               });
+//             }}
+//             onBack={() => {
+//               if (route.index > 0) {
+//                 navigator.pop();
+//               }
+//             }}
+//           />
+//         }
+//       />
+//     )
+//   }
+// }
 
-AppRegistry.registerComponent('BadInstagramCloneApp', () => BadInstagramCloneApp);
-
-
-
-
-
-
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
-
-
-import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
-
-export default class receiptScanner extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
-
-AppRegistry.registerComponent('receiptScanner', () => receiptScanner);
- */
+AppRegistry.registerComponent('receiptScanner', () => ReceiptScanner);

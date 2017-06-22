@@ -1,0 +1,138 @@
+[
+  {
+    "name": "Allgemein",
+    "children": [
+      {
+        "name": "Betriebskalender",
+      },
+       {
+        "name": "Sonderzeit",
+      },
+       {
+        "name": "Standort",
+      },
+       {
+        "name": "Kostenstelle"
+      },
+       {
+        "name": "Buchungsregel"
+      },
+       {
+        "name": "Lagerort"
+      },
+       {
+        "name": "Lagerortsliste"
+      },
+       {
+        "name": "GebindeTyp"
+      },
+       {
+        "name": "Kunde"
+      },
+       {
+        "name": "Artikelherkunft"
+      }
+    ]
+  },
+  {
+    "name": "Ressourcen",
+    "children": [
+       {
+        "name": "Arbeitsplatz"
+      },
+      {
+        "name": "Arbeitsplatz-Gruppe"
+      },
+      {
+        "name": "Fertigungshilfsmittel"
+      },
+       {
+        "name": "Fertigungsh.-Typ"
+      },
+       {
+        "name": "Personal"
+      },
+       {
+        "name": "Personal-Gruppe"
+      },
+       {
+        "name": "Schichtrhythmus"
+      },
+       {
+        "name": "Schicht"
+      }
+      ]
+  },    
+  {
+    "name": "Beschreibungen",
+    "children": [
+      {
+        "name": "Artikel"
+      },
+      {
+        "name": "Produktionsbeschr."
+      },
+      {
+        "name": "Stückliste"
+      },
+      {
+        "name": "Arbeitsplan"
+      },
+      {
+        "name": "Arbeitsgang"
+      },
+      {
+        "name": "Fertigungsh.-Liste"
+      },
+      {
+        "name": "Terminliste"
+      },
+      {
+        "name": "Ersatzartikel"
+      },
+      {
+        "name": "Artikelgruppen-BW"
+      },
+      {
+        "name": "Kuppelproduktion"
+      },
+      {
+        "name": "Art.-Merkmalwerte"
+      },
+      {
+        "name": "Artikel-Verwendung"
+      }
+    ]
+  },
+  {
+    "name": "Aufträge",
+    "children": [
+      {
+        "name": "Kundenauftrag"
+      },
+      {
+        "name": "Absatzplan"
+      },
+      {
+        "name": "Artikel-Bedarf"
+      }
+    ]
+  },
+  {
+    "name": "IST-Erfassung",
+    "children": [
+      {
+        "name": "Artikel-Bestand"
+      },
+      {
+        "name": "Lagerauftrag"
+      },
+      {
+        "name": "Fertigungsauftrag"
+      },
+      {
+        "name": "Auftrag-Suche"
+      }
+    ]
+  }
+];
